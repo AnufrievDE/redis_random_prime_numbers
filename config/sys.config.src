@@ -1,0 +1,38 @@
+[
+  {kernel, [
+      {logger_level, debug},
+      {logger, [
+        {handler, default, logger_std_h,
+          #{level => debug,
+            formatter => {logger_formatter, #{single_line => true}}}},
+        {handler, file_handler, logger_std_h,  % {handler, HandlerId, Module,
+          #{level => debug,
+            config => #{
+              file => "log/erlang.log",
+              max_no_bytes => 10000000,
+              max_no_files => 5,
+              compress_on_rotate => true},
+            formatter => {logger_formatter, #{single_line => true}}
+          }}
+      ]}
+  ]},
+
+  {random_prime_numbers, [
+      %{manual_start, true},
+      %{numbers_per_sec, ${NUMS_PER_SEC}},
+      {n, ${N}},
+      {rdb_list_key, "${RDB_LIST_KEY}"},
+      {rdb_result_set_key, "${RDB_RESULT_SET_KEY}"},
+      {pools, [
+        {default_pool, [
+          {size, 10},
+          {max_overflow, 5}
+          ], [
+          {host, "${REDIS_MASTER_HOST}"},
+          {port, ${REDIS_MASTER_PORT_NUMBER}},
+          {database, ${REDIS_DB}},
+          {password, "${REDIS_PASSWORD}"}
+        ]}
+      ]}
+  ]}
+].

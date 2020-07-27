@@ -1,0 +1,20 @@
+{application, random_prime_numbers,
+ [{description, "Funbox redis test application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {random_prime_numbers_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    eredis,
+    poolboy
+   ]},
+  {env,
+   [{manual_start, false},
+    {numbers_per_sec, 3000}
+   ]},
+  {modules, []},
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.

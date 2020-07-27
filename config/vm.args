@@ -1,0 +1,7 @@
+## Cookie for distributed erlang
+-setcookie qwerty
+
+## Node name
+-sname random_prime_numbers@localhost
+
++pc unicode

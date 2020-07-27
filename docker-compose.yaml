@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+    rpn:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        env_file:
+            - .env
+        depends_on:
+            - redis
+    redis:
+        image: 'bitnami/redis:latest'
+        env_file:
+            - .env
+        ports:
+            - '${REDIS_MASTER_PORT_NUMBER}:6379'
