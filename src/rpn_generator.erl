@@ -47,6 +47,8 @@ start_link(ManualStart, NumsPerSec, N, EredisPool, ListKey) ->
 %%%===================================================================
 init({ManualStart, NumsPerSec, N, EredisPool, ListKey}) ->
     rand:seed(exro928ss, erlang:time()),
+    %% set off_heap
+    process_flag(message_queue_data, off_heap),
     %% Manual or Automatic start
     ManualStart orelse gen_server:cast(self(), start_timers),
     ?LOG(notice, "rpn_generator initialized"),
